@@ -26,7 +26,7 @@ public class GameCore {
 	protected List<Blast> blast = new ArrayList<Blast>();// 爆炸效果
 	protected List<EnermyBullet> EB = new ArrayList<EnermyBullet>();
 
-	GameCondition gcdt = new GameCondition();
+	public GameCondition gcdt = new GameCondition();
 	Impact imp = new Impact();
 	BGM bgm = new BGM();
 
@@ -39,7 +39,7 @@ public class GameCore {
 	int PanelW;
 	int PanelH;
 
-	GameCore(int PanelW, int PanelH) {// 构造函数
+	public GameCore(int PanelW, int PanelH) {// 构造函数
 		this.PanelW = PanelW;
 		this.PanelH = PanelH;
 		tx = mf.x;

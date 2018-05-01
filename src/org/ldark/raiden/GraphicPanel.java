@@ -1,16 +1,10 @@
 package org.ldark.raiden;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.sound.midi.Synthesizer;
-import javax.swing.ImageIcon;
 
 public class GraphicPanel {
 
@@ -34,7 +28,7 @@ public class GraphicPanel {
 	GameCondition gcdt;
 	BufferedImage bfim = null;
 
-	GraphicPanel(GameCore gc, GameCondition gcdt) {
+	public GraphicPanel(GameCore gc, GameCondition gcdt) {
 		this.gc = gc;
 		this.gcdt = gcdt;
 		try {
@@ -74,7 +68,7 @@ public class GraphicPanel {
 			ubfim2 = bfim.getSubimage(0, 640 - gc.backy, 500, gc.backy);
 			g.drawImage(ubfim, 0, gc.backy, null);
 			g.drawImage(ubfim2, 0, 0, null);
-			g.drawString((int) gc.score + "分", 10, 40);
+			g.drawString(gc.score + "分", 10, 40);
 
 			g.drawImage(hero, gc.getMf().x, gc.getMf().y, null);
 			for (Bullet b : gc.HerobulletList) {// 子弹的绘制
