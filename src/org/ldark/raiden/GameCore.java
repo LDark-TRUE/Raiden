@@ -1,6 +1,5 @@
 package org.ldark.raiden;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,12 +49,7 @@ public class GameCore {
 	}
 
 	public void PlayMusic() {
-		try {
-			bgm.play();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		bgm.play();
 	}
 
 	public void StopMusic() {
