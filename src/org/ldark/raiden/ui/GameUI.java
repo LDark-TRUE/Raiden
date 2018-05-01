@@ -90,7 +90,7 @@ public class GameUI {
 	}
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("GameUI");
+		JFrame frame = new JFrame("Raiden 1.1.0 beta");
 		frame.setContentPane(new GameUI(frame).contentPane);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(50, 50, 500, 640);
