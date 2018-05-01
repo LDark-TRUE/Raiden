@@ -7,9 +7,9 @@ public class Impact {
 	        a=Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 	        b=Math.sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
 	        c=Math.sqrt((x2-x3)*(x2-x3)+(y2-y3)*(y2-y3));
-	        // Ïß¶ÎµÄ³¤¶È
-	        // (x1,y1)µ½µãµÄ¾àÀë
-	        // (x2,y2)µ½µãµÄ¾àÀë
+	        // çº¿æ®µçš„é•¿åº¦
+	        // (x1,y1)åˆ°ç‚¹çš„è·ç¦»
+	        // (x2,y2)åˆ°ç‚¹çš„è·ç¦»
 	        if (c <= 0.000001 || b <= 0.000001) {
 	            space = 0;
 	            return space;
@@ -26,9 +26,9 @@ public class Impact {
 	            space = c;
 	            return space;
 	        }
-	        double p = (a + b + c) / 2;// °ëÖÜ³¤
-	        double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));// º£Â×¹«Ê½ÇóÃæ»ı
-	        space = 2 * s / a;// ·µ»Øµãµ½ÏßµÄ¾àÀë£¨ÀûÓÃÈı½ÇĞÎÃæ»ı¹«Ê½Çó¸ß£©
+	        double p = (a + b + c) / 2;// åŠå‘¨é•¿
+	        double s = Math.sqrt(p * (p - a) * (p - b) * (p - c));// æµ·ä¼¦å…¬å¼æ±‚é¢ç§¯
+	        space = 2 * s / a;// è¿”å›ç‚¹åˆ°çº¿çš„è·ç¦»ï¼ˆåˆ©ç”¨ä¸‰è§’å½¢é¢ç§¯å…¬å¼æ±‚é«˜ï¼‰
 	        return space;
 	}
 }

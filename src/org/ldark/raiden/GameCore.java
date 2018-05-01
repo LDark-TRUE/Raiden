@@ -22,9 +22,9 @@ public class GameCore {
 	static int startx = 200, starty = 540;
 	int score = 0;
 	static int death = 0;
-	protected List<Bullet> HerobulletList = new ArrayList<Bullet>();// Ó¢ĞÛ·É»ú×Óµ¯
-	protected List<enermy> Enermy = new ArrayList<enermy>();// µĞ»ú
-	protected List<Blast> blast = new ArrayList<Blast>();// ±¬Õ¨Ğ§¹û
+	protected List<Bullet> HerobulletList = new ArrayList<Bullet>();// è‹±é›„é£æœºå­å¼¹
+	protected List<enermy> Enermy = new ArrayList<enermy>();// æ•Œæœº
+	protected List<Blast> blast = new ArrayList<Blast>();// çˆ†ç‚¸æ•ˆæœ
 	protected List<EnermyBullet> EB = new ArrayList<EnermyBullet>();
 
 	GameCondition gcdt = new GameCondition();
@@ -40,7 +40,7 @@ public class GameCore {
 	int PanelW;
 	int PanelH;
 
-	GameCore(int PanelW, int PanelH) {// ¹¹Ôìº¯Êı
+	GameCore(int PanelW, int PanelH) {// æ„é€ å‡½æ•°
 		this.PanelW = PanelW;
 		this.PanelH = PanelH;
 		tx = mf.x;
@@ -128,7 +128,7 @@ public class GameCore {
 				mf.x = PanelW - 30;
 			tx = mf.x;
 		}
-		// ×Óµ¯µÄÎ»ÖÃ¼ÆËã bulletstart
+		// å­å¼¹çš„ä½ç½®è®¡ç®— bulletstart
 		if (z && time % 5 == 0) {
 			// gcdt.setFlag(1);
 			Bullet b = new Bullet(mf.x, mf.y);
@@ -158,25 +158,25 @@ public class GameCore {
 
 		if (z == false) {
 			gcdt.setFlag(0);
-		} // ×Óµ¯µÄÎ»ÖÃ¼ÆËãbulletend
+		} // å­å¼¹çš„ä½ç½®è®¡ç®—bulletend
 			// System.out.println(""+mf.x);
 
 		if (space == true) {
-			if (time - timeforspace > 300) {// 5ÃëÒ»¸ö´ó
+			if (time - timeforspace > 300) {// 5ç§’ä¸€ä¸ªå¤§
 				HerobulletList.removeAll(HerobulletList);
 				Enermy.removeAll(Enermy);
 				blast.removeAll(blast);
 				EB.removeAll(EB);
 				/*
-				 * HerobulletList = new ArrayList<Bullet>();// Ó¢ĞÛ·É»ú×Óµ¯ Enermy =
-				 * new ArrayList<enermy>();// µĞ»ú blast = new
-				 * ArrayList<Blast>();//±¬Õ¨Ğ§¹û EB = new ArrayList<EnermyBullet>();
+				 * HerobulletList = new ArrayList<Bullet>();// è‹±é›„é£æœºå­å¼¹ Enermy =
+				 * new ArrayList<enermy>();// æ•Œæœº blast = new
+				 * ArrayList<Blast>();//çˆ†ç‚¸æ•ˆæœ EB = new ArrayList<EnermyBullet>();
 				 */
 				timeforspace = time;
 			}
 		}
 
-		int enm = 0;// µĞ»úÎ»ÖÃstart
+		int enm = 0;// æ•Œæœºä½ç½®start
 		enm = Enermy.size();
 
 		if (time % 30 == 0 && enm < 7) {
@@ -198,9 +198,9 @@ public class GameCore {
 				enm--;
 				i--;
 			}
-		} // µĞ»úÎ»ÖÃend
+		} // æ•Œæœºä½ç½®end
 
-		// µĞ»ú×Óµ¯start
+		// æ•Œæœºå­å¼¹start
 		for (enermy e : Enermy) {
 			if (time - e.time > 20) {
 				e.time = time;
@@ -222,9 +222,9 @@ public class GameCore {
 				ebnum--;
 				i--;
 			}
-		} // µĞ»ú×Óµ¯end
+		} // æ•Œæœºå­å¼¹end
 
-		// Ó¢ĞÛ×Óµ¯start
+		// è‹±é›„å­å¼¹start
 		for (int i = 0; i < hbsize; i++) {
 			int x1 = HerobulletList.get(i).mfbx;
 			int y1 = HerobulletList.get(i).mfby;
@@ -247,7 +247,7 @@ public class GameCore {
 					if (enm <= 0)
 						break;
 					if (hbsize <= 0)
-						break;// ´Ë²¹¶¡°üÀ¨£º¶ÔÓÚ×Óµ¯µÄ²»ÕıÈ·ÒÆ³ı£¨remove£©£¨¶ÔÍ¬Ò»×Óµ¯¶à´ÎÒÆ³ı£©½øĞĞĞŞ¸´
+						break;// æ­¤è¡¥ä¸åŒ…æ‹¬ï¼šå¯¹äºå­å¼¹çš„ä¸æ­£ç¡®ç§»é™¤ï¼ˆremoveï¼‰ï¼ˆå¯¹åŒä¸€å­å¼¹å¤šæ¬¡ç§»é™¤ï¼‰è¿›è¡Œä¿®å¤
 					if (i < 0)
 						i = 0;
 					x1 = HerobulletList.get(i).mfbx;
@@ -264,9 +264,9 @@ public class GameCore {
 				i--;
 			}
 		}
-		// Ó¢ĞÛ×Óµ¯end
+		// è‹±é›„å­å¼¹end
 
-		// ·É»úÅö×²ÅĞ¶¨
+		// é£æœºç¢°æ’åˆ¤å®š
 		em2 = Enermy.size();
 		for (int i = 0; i < em2; i++) {
 			int em2x = Enermy.get(i).x;
@@ -291,7 +291,7 @@ public class GameCore {
 					if (em2 <= 0)
 						break;
 					if (i >= 0) {
-						em2x = Enermy.get(i).x;// ´Ë²¹¶¡°üÀ¨£º½â¾öi=-1µÄÇé¿ö¡£
+						em2x = Enermy.get(i).x;// æ­¤è¡¥ä¸åŒ…æ‹¬ï¼šè§£å†³i=-1çš„æƒ…å†µã€‚
 						em2y = Enermy.get(i).y;
 					}
 				}
@@ -313,9 +313,9 @@ public class GameCore {
 		 * if(e.x-mf.x<20&&mf.x-e.x<20&&e.y-mf.y<20&&mf.y-e.y<20){ mf.x=startx;
 		 * mf.y=starty; } }
 		 */
-		// ·É»úÅö×²ÅĞ¶¨end
+		// é£æœºç¢°æ’åˆ¤å®šend
 
-		// µĞ»ú×Óµ¯Åö×²ÅĞ¶¨
+		// æ•Œæœºå­å¼¹ç¢°æ’åˆ¤å®š
 		for (EnermyBullet eb : EB) {
 			if (time - mf.time > 120) {
 

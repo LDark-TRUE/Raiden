@@ -63,7 +63,7 @@ public class UI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		addKeyListener(new KeyAdapter() {// °´ÏÂ°´Å¥
+		addKeyListener(new KeyAdapter() {// æŒ‰ä¸‹æŒ‰é’®
 			@Override
 			public void keyPressed(KeyEvent e) {
 			//	System.out.println("asd");
@@ -88,7 +88,7 @@ public class UI extends JFrame {
 					break;
 				case KeyEvent.VK_ENTER:
 					if(start==0){		
-					new Thread(() -> {//µ¥¶ÀµÄÏß³ÌÀ´½øĞĞÓÎÏ·Âß¼­µÄ´¦Àí
+					new Thread(() -> {//å•ç‹¬çš„çº¿ç¨‹æ¥è¿›è¡Œæ¸¸æˆé€»è¾‘çš„å¤„ç†
 						startTime = System.currentTimeMillis();
 						while (true) {
 							Gc.run();
@@ -96,7 +96,7 @@ public class UI extends JFrame {
 							try {
 								Thread.sleep(16);
 							} catch (InterruptedException e1) {
-								// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+								// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 								e1.printStackTrace();
 							}
 						}
@@ -109,7 +109,7 @@ public class UI extends JFrame {
 				}
 			}
 		});
-		addKeyListener(new KeyAdapter() {// ÊÍ·Å°´Å¥
+		addKeyListener(new KeyAdapter() {// é‡Šæ”¾æŒ‰é’®
 			@Override
 			public void keyReleased(KeyEvent e) {
 				//System.out.println("asd2");
@@ -144,7 +144,7 @@ public class UI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel.setVisible(false);
-				new Thread(() -> {//µ¥¶ÀµÄÏß³ÌÀ´½øĞĞÓÎÏ·Âß¼­µÄ´¦Àí
+				new Thread(() -> {//å•ç‹¬çš„çº¿ç¨‹æ¥è¿›è¡Œæ¸¸æˆé€»è¾‘çš„å¤„ç†
 					startTime = System.currentTimeMillis();
 					while (true) {
 						Gc.run();
@@ -152,7 +152,7 @@ public class UI extends JFrame {
 						try {
 							Thread.sleep(16);
 						} catch (InterruptedException e1) {
-							// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+							// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 							e1.printStackTrace();
 						}
 					}
@@ -165,7 +165,7 @@ public class UI extends JFrame {
 */
 	}
 	
-// RealPaneÀà
+// RealPaneç±»
 	class RealPane extends JPanel {
 
 		/**
@@ -182,20 +182,20 @@ public class UI extends JFrame {
 
 		@Override
 		public void paint(Graphics g) {
-			Gp.render(g);//¸ºÔğ»æÍ¼
+			Gp.render(g);//è´Ÿè´£ç»˜å›¾
 			g.setColor(Color.WHITE);
 			g.drawString((double) frameCount / ((double) (System.currentTimeMillis() - startTime) / 1000) + " fps", 10,
 					20);
 			frameCount++;
 			if(start==0)g.drawString("Enter", 200, 300);
-			// FPS¼ÆËã
+			// FPSè®¡ç®—
 		}
 
 		Image ImageBuffer = null;
 		Graphics GraImage = null;
 
 		@Override
-		public void update(Graphics g) {//»º³å
+		public void update(Graphics g) {//ç¼“å†²
 			if (GraImage == null) {
 				ImageBuffer = createImage(getWidth(), getHeight());
 				GraImage = ImageBuffer.getGraphics();

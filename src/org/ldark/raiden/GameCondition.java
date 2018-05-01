@@ -2,7 +2,7 @@ package org.ldark.raiden;
 
 
 
-public class GameCondition {//这个类用于做各个类之间的数据交换(还不知道好不好用)测试ing
+public class GameCondition {//杩欎釜绫荤敤浜庡仛鍚勪釜绫讳箣闂寸殑鏁版嵁浜ゆ崲(杩樹笉鐭ラ亾濂戒笉濂界敤)娴嬭瘯ing
 	int flag=0;
 	int BulletNumber=0;
 	MyFighter mf;
