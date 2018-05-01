@@ -1,27 +1,14 @@
 package org.ldark.raiden;
 
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Image;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class UI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2574708289101570555L;
 
 	private JPanel contentPane;
@@ -29,8 +16,9 @@ public class UI extends JFrame {
 	private long startTime;
 
 	private long frameCount;
-	
-	private int start=0;
+
+	private int start = 0;
+
 	/**
 	 * Launch the application.
 	 */
@@ -55,10 +43,10 @@ public class UI extends JFrame {
 		super("Raiden 1.1.0 beta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 500, 640);
-		
+
 		GameCore Gc = new GameCore(getWidth(), getHeight());
-		GraphicPanel Gp = new GraphicPanel(Gc,Gc.gcdt);
-		
+		GraphicPanel Gp = new GraphicPanel(Gc, Gc.gcdt);
+
 		contentPane = new RealPane(Gp);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,46 +54,46 @@ public class UI extends JFrame {
 		addKeyListener(new KeyAdapter() {// 按下按钮
 			@Override
 			public void keyPressed(KeyEvent e) {
-			//	System.out.println("asd");
+				//	System.out.println("asd");
 				switch (e.getKeyCode()) {
-				case KeyEvent.VK_UP:
-					Gc.setUp(true);
-					break;
-				case KeyEvent.VK_DOWN:
-					Gc.setDown(true);
-					break;
-				case KeyEvent.VK_LEFT:
-					Gc.setLeft(true);
-					break;
-				case KeyEvent.VK_RIGHT:
-					Gc.setRight(true);
-					break;
-				case KeyEvent.VK_Z:
-					Gc.setZ(true);
-					break;
-				case KeyEvent.VK_SPACE:
-					Gc.setSpace(true);
-					break;
-				case KeyEvent.VK_ENTER:
-					if(start==0){		
-					new Thread(() -> {//单独的线程来进行游戏逻辑的处理
-						startTime = System.currentTimeMillis();
-						while (true) {
-							Gc.run();
-							contentPane.repaint();
-							try {
-								Thread.sleep(16);
-							} catch (InterruptedException e1) {
-								// TODO 自动生成的 catch 块
-								e1.printStackTrace();
-							}
+					case KeyEvent.VK_UP:
+						Gc.setUp(true);
+						break;
+					case KeyEvent.VK_DOWN:
+						Gc.setDown(true);
+						break;
+					case KeyEvent.VK_LEFT:
+						Gc.setLeft(true);
+						break;
+					case KeyEvent.VK_RIGHT:
+						Gc.setRight(true);
+						break;
+					case KeyEvent.VK_Z:
+						Gc.setZ(true);
+						break;
+					case KeyEvent.VK_SPACE:
+						Gc.setSpace(true);
+						break;
+					case KeyEvent.VK_ENTER:
+						if (start == 0) {
+							new Thread(() -> {//单独的线程来进行游戏逻辑的处理
+								startTime = System.currentTimeMillis();
+								while (true) {
+									Gc.run();
+									contentPane.repaint();
+									try {
+										Thread.sleep(16);
+									} catch (InterruptedException e1) {
+										// TODO 自动生成的 catch 块
+										e1.printStackTrace();
+									}
+								}
+							}).start();
 						}
-					}).start();
-					}
-					start=1;
-					break;
-				case KeyEvent.VK_0:
-					Gc.StopMusic();
+						start = 1;
+						break;
+					case KeyEvent.VK_0:
+						Gc.StopMusic();
 				}
 			}
 		});
@@ -114,24 +102,24 @@ public class UI extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				//System.out.println("asd2");
 				switch (e.getKeyCode()) {
-				case KeyEvent.VK_UP:
-					Gc.setUp(false);
-					break;
-				case KeyEvent.VK_DOWN:
-					Gc.setDown(false);
-					break;
-				case KeyEvent.VK_LEFT:
-					Gc.setLeft(false);
-					break;
-				case KeyEvent.VK_RIGHT:
-					Gc.setRight(false);
-					break;
-				case KeyEvent.VK_Z:
-					Gc.setZ(false);
-					break;
-				case KeyEvent.VK_SPACE:
-					Gc.setSpace(false);
-					break;
+					case KeyEvent.VK_UP:
+						Gc.setUp(false);
+						break;
+					case KeyEvent.VK_DOWN:
+						Gc.setDown(false);
+						break;
+					case KeyEvent.VK_LEFT:
+						Gc.setLeft(false);
+						break;
+					case KeyEvent.VK_RIGHT:
+						Gc.setRight(false);
+						break;
+					case KeyEvent.VK_Z:
+						Gc.setZ(false);
+						break;
+					case KeyEvent.VK_SPACE:
+						Gc.setSpace(false);
+						break;
 				}
 			}
 		});
@@ -164,18 +152,19 @@ public class UI extends JFrame {
 		contentPane.add(panel);
 */
 	}
-	
-// RealPane类
+
+	// RealPane类
 	class RealPane extends JPanel {
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -3741019044684089379L;
 		/**
-		 * 
+		 *
 		 */
 		private GraphicPanel Gp;
+
 		RealPane(GraphicPanel Gp) {
 			this.Gp = Gp;
 		}
@@ -187,7 +176,7 @@ public class UI extends JFrame {
 			g.drawString((double) frameCount / ((double) (System.currentTimeMillis() - startTime) / 1000) + " fps", 10,
 					20);
 			frameCount++;
-			if(start==0)g.drawString("Enter", 200, 300);
+			if (start == 0) g.drawString("Enter", 200, 300);
 			// FPS计算
 		}
 

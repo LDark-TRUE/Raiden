@@ -159,7 +159,7 @@ public class GameCore {
 		if (z == false) {
 			gcdt.setFlag(0);
 		} // 子弹的位置计算bulletend
-			// System.out.println(""+mf.x);
+		// System.out.println(""+mf.x);
 
 		if (space == true) {
 			if (time - timeforspace > 300) {// 5秒一个大
@@ -276,7 +276,7 @@ public class GameCore {
 						|| imp.Rect(mf.x, mf.y, mf.x + 45, mf.y, em2x + 5, em2y + 5) < 15
 						|| imp.Rect(mf.x + 45, mf.y, mf.x + 45, mf.y + 50, em2x + 5, em2y + 5) < 15
 						|| imp.Rect(mf.x, mf.y + 50, mf.x + 45, mf.y + 50, em2x + 5, em2y + 5) < 15
-								&& time - mf.time > 180) {
+						&& time - mf.time > 180) {
 					death++;
 					score = 0;
 					mf.time = time;
