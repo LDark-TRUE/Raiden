@@ -1,5 +1,7 @@
-package org.ldark.raiden;
+package org.ldark.raiden.ui;
 
+import org.ldark.raiden.GameCore;
+import org.ldark.raiden.GraphicPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -7,55 +9,19 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class UI extends JFrame {
-
-	private static final long serialVersionUID = -2574708289101570555L;
-
+public class GameUI {
 	private JPanel contentPane;
 
+	private GameCore Gc;
 	private long startTime;
-
 	private long frameCount;
-
 	private int start = 0;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UI frame = new UI();
-					frame.setVisible(true);
-					frame.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public UI() {
-		super("Raiden 1.1.0 beta");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 50, 500, 640);
-
-		GameCore Gc = new GameCore(getWidth(), getHeight());
-		GraphicPanel Gp = new GraphicPanel(Gc, Gc.gcdt);
-
-		contentPane = new RealPane(Gp);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		addKeyListener(new KeyAdapter() {// 按下按钮
+	public GameUI(JFrame frame) {
+		frame.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				//	System.out.println("asd");
-				switch (e.getKeyCode()) {
+			public void keyPressed(KeyEvent keyEvent) {
+				switch (keyEvent.getKeyCode()) {
 					case KeyEvent.VK_UP:
 						Gc.setUp(true);
 						break;
@@ -96,12 +62,10 @@ public class UI extends JFrame {
 						Gc.StopMusic();
 				}
 			}
-		});
-		addKeyListener(new KeyAdapter() {// 释放按钮
+
 			@Override
-			public void keyReleased(KeyEvent e) {
-				//System.out.println("asd2");
-				switch (e.getKeyCode()) {
+			public void keyReleased(KeyEvent keyEvent) {
+				switch (keyEvent.getKeyCode()) {
 					case KeyEvent.VK_UP:
 						Gc.setUp(false);
 						break;
@@ -123,46 +87,30 @@ public class UI extends JFrame {
 				}
 			}
 		});
+	}
 
-		/*panel.setBounds(0, 0, 450, 501);
-		panel.setLayout(null);
-		JButton btnNewButton = new JButton("\u5F00\u59CB\u6E38\u620F");
-		btnNewButton.setBounds(120, 94, 200, 55);
-		btnNewButton.setFocusable(false);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
-				new Thread(() -> {//单独的线程来进行游戏逻辑的处理
-					startTime = System.currentTimeMillis();
-					while (true) {
-						Gc.run();
-						contentPane.repaint();
-						try {
-							Thread.sleep(16);
-						} catch (InterruptedException e1) {
-							// TODO 自动生成的 catch 块
-							e1.printStackTrace();
-						}
-					}
-				}).start();
-			}
-		});
-		panel.add(btnNewButton);
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Raiden 1.1.0 beta");
+		frame.setContentPane(new GameUI(frame).contentPane);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(50, 50, 500, 640);
+		frame.setVisible(true);
+	}
 
-		contentPane.add(panel);
-*/
+	private void createUIComponents() {
+		// TODO: place custom component creation code here
+		Gc = new GameCore(500, 640);
+		GraphicPanel Gp = new GraphicPanel(Gc, Gc.gcdt);
+		contentPane = new RealPane(Gp);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
 	}
 
 	// RealPane类
 	class RealPane extends JPanel {
+		Image ImageBuffer = null;
+		Graphics GraImage = null;
 
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = -3741019044684089379L;
-		/**
-		 *
-		 */
 		private GraphicPanel Gp;
 
 		RealPane(GraphicPanel Gp) {
@@ -179,9 +127,6 @@ public class UI extends JFrame {
 			if (start == 0) g.drawString("Enter", 200, 300);
 			// FPS计算
 		}
-
-		Image ImageBuffer = null;
-		Graphics GraImage = null;
 
 		@Override
 		public void update(Graphics g) {//缓冲

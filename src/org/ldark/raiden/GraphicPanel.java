@@ -1,16 +1,10 @@
 package org.ldark.raiden;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.sound.midi.Synthesizer;
-import javax.swing.ImageIcon;
 
 public class GraphicPanel {
 
@@ -34,7 +28,7 @@ public class GraphicPanel {
 	GameCondition gcdt;
 	BufferedImage bfim = null;
 
-	GraphicPanel(GameCore gc, GameCondition gcdt) {
+	public GraphicPanel(GameCore gc, GameCondition gcdt) {
 		this.gc = gc;
 		this.gcdt = gcdt;
 		try {
@@ -64,7 +58,7 @@ public class GraphicPanel {
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, gc.getPanelW(), gc.getPanelH());
 			/*
-			 * g.drawImage(Back, 0, 0, 500, gc.backy, null);¾É°æ±³¾°Í¼»æÖÆ
+			 * g.drawImage(Back, 0, 0, 500, gc.backy, null);æ—§ç‰ˆèƒŒæ™¯å›¾ç»˜åˆ¶
 			 * g.drawImage(Back, 0, gc.backy, 500,640-gc.backy,null);
 			 */
 			// BufferedImage ubfim=null;
@@ -74,10 +68,10 @@ public class GraphicPanel {
 			ubfim2 = bfim.getSubimage(0, 640 - gc.backy, 500, gc.backy);
 			g.drawImage(ubfim, 0, gc.backy, null);
 			g.drawImage(ubfim2, 0, 0, null);
-			g.drawString((int) gc.score + "·Ö", 10, 40);
+			g.drawString(gc.score + "åˆ†", 10, 40);
 
 			g.drawImage(hero, gc.getMf().x, gc.getMf().y, null);
-			for (Bullet b : gc.HerobulletList) {// ×Óµ¯µÄ»æÖÆ
+			for (Bullet b : gc.HerobulletList) {// å­å¼¹çš„ç»˜åˆ¶
 				g.drawImage(bullet, b.mfbx, b.mfby, null);
 			}
 			for (enermy e : gc.Enermy) {
