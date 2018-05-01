@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Raiden:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Raiden_jar</output-path>
+    <root id="archive" name="Raiden.jar">
+      <element id="module-output" name="Raiden" />
+    </root>
+  </artifact>
+</component>
